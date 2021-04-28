@@ -1,0 +1,170 @@
+/*
+初始化样式 符号*代表所有
+*/
+*{
+    margin:0;
+    padding:0;
+}
+.nav{
+    width:100%;
+    height:44px;
+    background-color: rgba(0,0,0,0.8);
+    display:flex;
+    justify-content: center; /*水平居中*/
+    align-items: center; /*竖直居中(侧轴居中）？？？)*/
+}
+.nav a{
+    color:#fff;
+    text-decoration: none;  /*下划线 a标签默认underline*/
+    width: 100px;
+    text-align: center; /*内容居中*/
+}
+.nav .logo{
+    height:44px;
+    background-image: url(../img/logo.svg);
+    background-repeat: no-repeat; /*不重复*/
+    background-position: center;  /*背景图片居中*/
+}
+.nav .search{
+    height:44px;
+    background-image: url(../img/search.svg);
+    background-repeat: no-repeat; /*不重复*/
+    background-position: center;  /*背景图片居中*/
+}
+.nav .buy{
+    height:44px;
+    background-image: url(../img/bag.svg);
+    background-repeat: no-repeat; /*不重复*/
+    background-position: center;  /*背景图片居中*/
+}
+
+.toggleBtn{
+    height:44px;
+    display: flex;
+    flex-direction: column;  /*竖直布局*/
+    justify-content: center; /*居中 ???*/
+    align-items: center; /*竖直居中(侧轴居中）)*/
+}
+.toggleBtn .line{
+    width: 18px;
+    height: 1px;
+    background-color: #fff;   
+    margin:6px;
+    display:none;
+}
+
+.navpage{
+     display:flex; /*高度已经是0，不用none*/ 
+     height:0vh;
+     width:100vw;
+    transition: all .8s;
+   
+    overflow:hidden;
+    position: fixed;
+        left:0;
+        top:0;
+        padding-top: 54px;   /*显示导航*/
+   
+}
+.navpage .navMain{
+    width:100%;
+}
+/*设定响应式 小于768时的样式*/
+@media only screen and (max-width:768px){
+    .toggleBtn{
+        display:flex;
+        z-index: 100;
+        position: relative;  /*层*/
+    }
+    .nav .logo{
+        z-index: 100;
+        position: relative;  /*层*/
+    }
+    .toggleBtn .line{
+        display:block;
+    }
+    .nav .text,.nav .search{
+        display: none;
+    }
+    .nav{
+        justify-content: space-between; /*没有间距  两个在两边*/
+    }
+    .nav a, .nav label{
+        width:50px;
+    }
+    .nav .toggleBtn{
+        order:1;    /*排序*/
+    }
+    .nav .logo{
+        order:2;
+    }
+    .nav .buy{
+        order:3;
+    }
+
+    #choose:checked~.toggleBtn .line:nth-child(1){
+        transform: rotate(45deg);
+        transform-origin: left;/*设置旋转中心点*/
+    }
+    #choose:checked~.toggleBtn .line:nth-child(2){
+        transform: rotate(-45deg);
+        transform-origin: left;/*设置旋转中心点*/
+    }
+    /*设定导航*/
+    #choose:checked~.navpage{
+        display:flex;
+        /*
+        vw:视窗宽度
+        vh:视窗高度
+        */
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        left:0;
+        top:0;
+        background-color: rgba(0,0,0,0.9);
+        color: #fff;
+        flex-direction: column;
+        padding-top: 54px;   /*显示导航*/
+    }
+
+    .searchInput{
+        margin: 0 28px;
+        display:flex;
+        justify-content: flex-start;  /*靠左*/
+        align-items: center;
+        height: 36px;
+        border-radius: 4px;
+        color:#ccc;
+        background-color: rgba(45,45,45,0.98);
+    }
+    .searchInput .icon{
+        width:12px;
+        height:16px;
+        background-image: url(../img/search2.svg);
+        background-repeat: no-repeat; 
+        background-position: center; 
+        /*背景图片 url 重复 位置 大小*/
+    }
+    .searchInput input{
+        flex:1;
+        margin:0 10px;
+        height: 100%;
+        background: transparent;
+        border: none;
+        outline: none;/*选中边框*/
+        color:#fff;
+    }
+    .navList{
+        margin:0 28px;
+        display: flex;
+        flex-direction: column;  /*竖*/
+    }
+    .navList a{
+        width:100%;
+        height:44px;
+        text-align: left;
+        border-bottom: 1px solid #ccc;
+        line-height:44px;
+    }
+}
